@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.0"
     application
+    id("com.github.johnrengelman.shadow") version "7.1.2" // To build a Fat JAR
 }
 
 group = "org.lorenzo"
