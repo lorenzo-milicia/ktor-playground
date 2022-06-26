@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val ktorVersion: String = "2.0.2"
+
 plugins {
     kotlin("jvm") version "1.7.0"
     application
@@ -14,12 +16,15 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core-jvm:2.0.2")
-    implementation("io.ktor:ktor-server-netty-jvm:2.0.2")
-    implementation ("io.ktor:ktor-server-status-pages:2.0.2")
-    implementation ("io.ktor:ktor-server-default-headers:2.0.2")
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+    implementation ("io.ktor:ktor-server-status-pages:$ktorVersion")
+    implementation ("io.ktor:ktor-server-default-headers:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.11")   // Ktor's logging dependency
     testImplementation(kotlin("test"))
+    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion") {
+        exclude(group = "junit", module = "junit")
+    }
     implementation(kotlin("stdlib-jdk8"))
 }
 
