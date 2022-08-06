@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val ktorVersion: String = "2.0.2"
+val exposedVersion: String = "0.38.2"
 
 plugins {
     kotlin("jvm") version "1.7.0"
@@ -16,16 +17,25 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+    // Ktor base dependencies
     implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
-    implementation ("io.ktor:ktor-server-status-pages:$ktorVersion")
-    implementation ("io.ktor:ktor-server-default-headers:$ktorVersion")
-    implementation("ch.qos.logback:logback-classic:1.2.11")   // Ktor's logging dependency
+    implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
+    implementation("io.ktor:ktor-server-default-headers:$ktorVersion")
+
+    // Ktor's logging dependency
+    implementation("ch.qos.logback:logback-classic:1.2.11")
+    // Testing
     testImplementation(kotlin("test"))
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion") {
         exclude(group = "junit", module = "junit")
     }
-    implementation(kotlin("stdlib-jdk8"))
+
+    // Exposed
+    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
 }
 
 tasks.test {
