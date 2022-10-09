@@ -26,7 +26,7 @@ dependencies {
     implementation("io.ktor:ktor-server-default-headers:$ktorVersion")
 
     // Ktor's logging dependency
-    implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation("ch.qos.logback:logback-classic:1.4.3")
     // Testing
     testImplementation(kotlin("test"))
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion") {

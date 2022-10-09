@@ -1,8 +1,8 @@
-package org.lorenzo.modules.greeting
+package org.lorenzo.env
 
 import org.lorenzo.modules.greeting.domain.HelloService
 import org.lorenzo.modules.greeting.domain.IHelloService
 
-class GreetingDependencies {
-	val helloService: IHelloService = HelloService()
+class Context(env: Env) {
+    val helloService: IHelloService = HelloService()
 }

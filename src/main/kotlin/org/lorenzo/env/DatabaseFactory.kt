@@ -1,4 +1,4 @@
-package org.lorenzo.modules.graphql
+package org.lorenzo.env
 
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -8,10 +8,12 @@ import org.lorenzo.modules.graphql.tables.Languages
 object DatabaseFactory {
 
     fun init() {
-
-        val driverClassName = "org.postgresql.Driver"
-        val jdbcUrl = "jdbc:postgresql://localhost:5432/postgres?user=postgres&password=mysecretpassword"
-        val database = Database.connect(jdbcUrl, driverClassName)
+        val database = Database.connect(
+            url = "org.postgresql.Driver",
+            driver = "jdbc:postgresql://localhost:5432/postgres",
+            user = "postgres",
+            password = "mysecretpassword"
+        )
         transaction(database) {
             SchemaUtils.create(Languages)
         }
